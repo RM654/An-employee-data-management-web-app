@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Employee List</h2>
+
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <table *ngIf="!loading && employees.length > 0" border="1" cellpadding="10" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Age</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.position }}</td>
+        <td>{{ emp.age }}</td>
+        <td>
+          <a [routerLink]="['/edit', emp.id]">Edit</a>
+          |
+          <button (click)="deleteEmployee(emp.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && employees.length === 0">
+    No employees found.
+  </div>
+
+  <br />
+  <a routerLink="/add">➕ Add New Employee</a>
+</div>
