@@ -1,0 +1,11 @@
+<h1>{{ title }}</h1>
+
+<nav>
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Employee List</a>
+  |
+  <a routerLink="/add" routerLinkActive="active">Add Employee</a>
+</nav>
+
+<hr />
+
+<router-outlet></router-outlet>
