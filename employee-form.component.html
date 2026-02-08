@@ -1,0 +1,83 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Edit Employee' : 'Add Employee' }}</h2>
+
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+        [class.invalid]="
+          employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched
+        "
+      />
+      <small
+        *ngIf="
+          employeeForm.get('name')?.invalid &&
+          employeeForm.get('name')?.touched
+        "
+        class="error"
+      >
+        Name is required.
+      </small>
+    </div>
+
+    <!-- Position -->
+    <div class="form-group">
+      <label for="position">Position:</label>
+      <input
+        type="text"
+        id="position"
+        formControlName="position"
+        class="form-control"
+        [class.invalid]="
+          employeeForm.get('position')?.invalid &&
+          employeeForm.get('position')?.touched
+        "
+      />
+      <small
+        *ngIf="
+          employeeForm.get('position')?.invalid &&
+          employeeForm.get('position')?.touched
+        "
+        class="error"
+      >
+        Position is required.
+      </small>
+    </div>
+
+    <!-- Age -->
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input
+        type="number"
+        id="age"
+        formControlName="age"
+        class="form-control"
+        [class.invalid]="
+          employeeForm.get('age')?.invalid && employeeForm.get('age')?.touched
+        "
+      />
+      <small
+        *ngIf="
+          employeeForm.get('age')?.invalid && employeeForm.get('age')?.touched
+        "
+        class="error"
+      >
+        Valid age (18+) is required.
+      </small>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="employeeForm.invalid">
+      {{ isEditMode ? 'Update' : 'Add' }} Employee
+    </button>
+  </form>
+
+  <p *ngIf="employeeForm.invalid && employeeForm.touched" class="error">
+    Please fix the errors above to continue.
+  </p>
+</div>
